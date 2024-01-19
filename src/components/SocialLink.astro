@@ -1,0 +1,51 @@
+---
+interface Props {
+  title: string;
+  url: string;
+}
+
+const { title, url } = Astro.props;
+---
+
+<a href={url} class="profile_social" target="_blank">
+  <span>{title}</span>
+  <div class="bg_button"></div>
+</a>
+
+<style>
+  .profile_social {
+    position: relative;
+    width: 86%;
+    font-size: 14px;
+    font-weight: var(--bold);
+    background-color: var(--grey);
+    border-radius: 8px;
+    padding-block: 13px;
+    overflow: hidden;
+    transition: var(--transition);
+  }
+
+  .profile_social span {
+    position: relative;
+    z-index: 99;
+  }
+
+  .bg_button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 100%;
+    left: 0;
+    background-color: var(--green);
+    z-index: 0;
+    transition: var(--transition); 
+  }
+
+  .profile_social:hover {
+    color: var(--grey);
+  }
+
+  .profile_social:hover .bg_button {
+    top: 0;
+  }
+</style>

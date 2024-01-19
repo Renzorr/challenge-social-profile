@@ -1,0 +1,105 @@
+---
+import { Image } from "astro:assets";
+import SocialLink from "./SocialLink.astro";
+import Avatar from "../assets/avatar-jessica.jpeg";
+
+interface Props {
+  name: string;
+  location: string;
+  description: string;
+}
+
+const SOCIALS = [
+  {
+    social: "GitHub",
+    url: "https://github.com/Renzorr",
+  },
+  {
+    social: "Frontend Mentor",
+    url: "https://www.frontendmentor.io/profile/Renzorr",
+  },
+  {
+    social: "LinkedIn",
+    url: "https://www.linkedin.com",
+  },
+  {
+    social: "Twitter",
+    url: "https://twitter.com/benaventer01",
+  },
+  {
+    social: "Instagram",
+    url: "https://www.instagram.com",
+  },
+];
+
+const { name, location, description } = Astro.props;
+---
+
+<main class="profile_card">
+  <Image
+    src={Avatar}
+    alt="avatar photo"
+    width={88}
+    height={88}
+    format="webp"
+    class="profile_photo"
+  />
+
+  <h1 class="profile_name">{name}</h1>
+  <h2 class="profile_location">{location}</h2>
+  <p class="profile_description">{description}</p>
+
+  <div class="profile_social_container">
+    {
+      SOCIALS.map((e) => {
+        return <SocialLink title={e.social} url={e.url} />;
+      })
+    }
+  </div>
+</main>
+
+<style>
+  .profile_card {
+    width: 100%;
+    max-width: 385px;
+    background-color: var(--dark-grey);
+    color: var(--white);
+    border-radius: 8px;
+    text-align: center;
+    margin-inline: auto;
+    padding: 39px 15px;
+  }
+
+  .profile_photo {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    margin-bottom: 24px;
+  }
+
+  .profile_name {
+    font-size: 24px;
+    font-weight: var(--semibold);
+    margin-bottom: 9px;
+  }
+
+  .profile_location {
+    font-size: 14px;
+    font-weight: var(--semibold);
+    color: var(--green);
+    margin-bottom: 28px;
+  }
+
+  .profile_description {
+    font-size: 14px;
+    letter-spacing: -0.1px;
+  }
+
+  .profile_social_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    margin-top: 27px;
+  }
+</style>
